@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test"
 import { SITE_CONFIG } from "../lib/site-config"
 
 test.describe("coming-soon page — content", () => {
-  test("renders the wordmark, hero copy, status, and footer", async ({ page }) => {
+  test("renders the wordmark, hero copy, and footer", async ({ page }) => {
     await page.goto("/")
 
     await expect(
@@ -10,8 +10,6 @@ test.describe("coming-soon page — content", () => {
     ).toBeVisible()
 
     await expect(page.getByText(SITE_CONFIG.eyebrow, { exact: true })).toBeVisible()
-    await expect(page.getByText(/June 2026/i).first()).toBeVisible()
-    await expect(page.getByText("OpenCode", { exact: false }).first()).toBeVisible()
 
     // New hero copy (replaces the old "You don't need to think." splash).
     await expect(page.getByText(SITE_CONFIG.heroLineA, { exact: false }).first()).toBeVisible()

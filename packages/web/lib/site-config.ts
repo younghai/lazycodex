@@ -18,7 +18,6 @@ export const SITE_CONFIG = {
     keyword: "ultrawork",
     period: ".",
   },
-  status: "Currently on OpenCode · Codex coming June 2026",
   ultraworkTagline: "One word. Every agent activates. Doesn't stop until done.",
   ultraworkExample: "ulw add authentication",
 } as const;

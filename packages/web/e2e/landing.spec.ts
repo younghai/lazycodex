@@ -33,11 +33,6 @@ test.describe("landing page — hero", () => {
       page.getByText(SITE_CONFIG.heroLineB.keyword, { exact: false }).first(),
     ).toBeVisible()
   })
-
-  test("shows the launch-window status", async ({ page }) => {
-    await page.goto("/")
-    await expect(page.getByText(/June 2026/i).first()).toBeVisible()
-  })
 })
 
 test.describe("landing page — install + commands", () => {

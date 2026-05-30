@@ -10,9 +10,8 @@ import { COMMANDS } from "../lib/commands"
  *   1. No horizontal overflow (the page fits).
  *   2. The wordmark is visible AND fits inside the viewport width.
  *   3. The hero keyword "ultrawork" is visible.
- *   4. The launch-window status (/June 2026/i) is visible.
- *   5. All three command names are visible.
- *   6. The footer ("lazycodex.ai") is visible.
+ *   4. All three command names are visible.
+ *   5. The footer ("lazycodex.ai") is visible.
  *
  * If a future change breaks any breakpoint, this spec catches it before
  * Lighthouse a11y/SEO scores even get a chance to fail.
@@ -65,9 +64,6 @@ for (const viewport of VIEWPORTS) {
       await expect(
         page.getByText(SITE_CONFIG.heroLineB.keyword, { exact: false }).first(),
       ).toBeVisible()
-
-      // Status pill visible.
-      await expect(page.getByText(/June 2026/i).first()).toBeVisible()
 
       // Command card names visible.
       for (const command of COMMANDS) {

@@ -18,7 +18,6 @@ export function InstallBlock(): JSX.Element {
       </div>
 
       <div className="flex flex-col items-center gap-1 text-center text-sm text-[color:var(--text-muted)]">
-        <p className="font-medium text-[color:var(--text-secondary)]">{SITE_CONFIG.status}</p>
         <p className="font-mono text-xs opacity-70">= {SITE_CONFIG.installEquivalent}</p>
       </div>
     </section>
