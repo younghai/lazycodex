@@ -18,7 +18,7 @@ describe("lazycodex-ai npm package", () => {
 
     // then
     assert.equal(manifest.name, "lazycodex-ai")
-    assert.equal(manifest.version, "0.2.0")
+    assert.equal(manifest.version, "0.2.1")
     assert.equal(manifest.bin?.["lazycodex-ai"], "bin/lazycodex-ai.js")
     assert.equal(manifest.private, undefined)
   })
