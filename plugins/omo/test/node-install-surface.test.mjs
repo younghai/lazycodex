@@ -24,7 +24,6 @@ test("#given Codex Light install docs #when inspected #then lazycodex is npm-fir
 	// then
 	for (const [path, text] of docs) {
 		assert.match(text, /\bnpx lazycodex-ai install\b/, `${path} should document the Node/npm install command`);
-		const oldRunnerPattern = new RegExp(`\\b${["bu", "nx"].join("")} lazycodex-ai\\b`);
-		assert.doesNotMatch(text, oldRunnerPattern, `${path} should not require Bun for lazycodex`);
+		assert.doesNotMatch(text, /\bbunx lazycodex-ai\b/, `${path} should not require Bun for lazycodex`);
 	}
 });

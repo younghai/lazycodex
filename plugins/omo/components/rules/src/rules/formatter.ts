@@ -74,12 +74,9 @@ export function formatStaticBlock(rules: ReadonlyArray<LoadedRule>, options: For
 		return "";
 	}
 
-	return [
-		"## Project Instructions",
-		"",
-		"must read project rules:",
-		orderStaticRules(uniqueRulesByBody(rules)).map(formatStaticRuleReference).join("\n"),
-	].join("\n");
+	const orderedRules = orderStaticRules(uniqueRulesByBody(rules));
+
+	return ["## Project Instructions", "", truncateRules(orderedRules, options).map(formatRule).join("\n\n")].join("\n");
 }
 
 function orderStaticRules(rules: ReadonlyArray<LoadedRule>): LoadedRule[] {
@@ -97,10 +94,6 @@ function orderStaticRules(rules: ReadonlyArray<LoadedRule>): LoadedRule[] {
 
 function isHephaestusRule(rule: LoadedRule): boolean {
 	return displayFilename(rule).toLowerCase() === "hephaestus.md";
-}
-
-function formatStaticRuleReference(rule: LoadedRule): string {
-	return `- [${displayFilename(rule)}]{${rule.path}}`;
 }
 
 function displayFilename(rule: LoadedRule): string {

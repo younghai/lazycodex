@@ -59,10 +59,10 @@ describe("package.json", () => {
 		expect((pkg["engines"] as Record<string, unknown>)["node"]).toBe(">=20.0.0");
 	});
 
-	it("exposes the omo binary pointing at dist/cli.js", async () => {
+	it("#given package metadata #when bin is inspected #then exposes the omo-ulw-loop binary pointing at dist/cli.js", async () => {
 		const pkg = await readJson("package.json") as Record<string, unknown>;
 		const bin = pkg["bin"] as Record<string, string>;
-		expect(bin["omo"]).toBe("./dist/cli.js");
+		expect(bin["omo-ulw-loop"]).toBe("./dist/cli.js");
 	});
 
 	it("ships the expected files for npm publish", async () => {
@@ -216,6 +216,16 @@ describe("skills/ulw-loop/SKILL.md", () => {
 	it("uses the .omo workspace path", async () => {
 		const text = await readText("skills/ulw-loop/SKILL.md");
 		expect(text).toContain(".omo/ulw-loop");
+	});
+
+	it("#given completed default state #when skill guidance is inspected #then it prefers a fresh session", async () => {
+		const skill = await readText("skills/ulw-loop/SKILL.md");
+		const workflow = await readText("skills/ulw-loop/references/full-workflow.md");
+
+		expect(skill).toContain("fresh `--session-id <new-id>`");
+		expect(skill).toContain("Use `--force` only");
+		expect(workflow).toContain("create-goals --session-id <new-id>");
+		expect(workflow).toContain("overwriting completed evidence");
 	});
 
 	it("#given long Codex runs #when worker guidance is inspected #then avoids context-expensive agent polling", async () => {
